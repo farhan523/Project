@@ -2,9 +2,8 @@ const http = require("http")
 const Socket = require("websocket").server
 const server = http.createServer(()=>{})
 
-const PORT = 3000
-server.listen(PORT,()=>{
-    console.log(`Server Running At ${PORT}`)
+server.listen(3000,()=>{
+    console.log(`Server Running At 3000`)
 })
 
 const webSocket = new Socket({httpServer:server})
