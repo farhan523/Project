@@ -70,7 +70,8 @@ webSocket.on('request',(req)=>{
                     userToReceiveAnswer.conn.send(JSON.stringify({
                         type:"answer_received",
                         name: data.name,
-                        data:data.data.sdp
+                       data: data.data ? data.data.sdp : null
+
                     }))
                 }
             break
@@ -87,6 +88,16 @@ webSocket.on('request',(req)=>{
                             sdpCandidate: data.data.sdpCandidate
                         }
                     }))
+                }
+            break
+
+            case "end_call":
+                let userToNotifyEndCall = findUser(data.target);
+                if (userToNotifyEndCall) {
+                    userToNotifyEndCall.conn.send(JSON.stringify({
+                        type: "call_ended",
+                        name: data.name
+                    }));
                 }
             break
 
