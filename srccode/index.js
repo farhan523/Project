@@ -8,9 +8,7 @@ server.listen(PORT,()=>{
 })
 
 const webSocket = new Socket({httpServer:server})
-
 const users = []
-
 webSocket.on('request',(req)=>{
     const connection = req.accept()
 
